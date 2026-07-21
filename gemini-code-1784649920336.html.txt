@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X1 RM SENSI STORE | VIP Sensitivity & Regedit</title>
+    <style>
+        /* Modern Gaming Aesthetic Variables */
+        :root {
+            --bg-dark: #0a0a0f;
+            --card-bg: #12131c;
+            --accent-red: #ff0055;
+            --accent-cyan: #00f0ff;
+            --text-main: #ffffff;
+            --text-muted: #a0a0b0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ----------------------------------- */
+        /* INTRO OVERLAY SCREEN                */
+        /* ----------------------------------- */
+        #intro-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #050508;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Background Animated Glow for Intro */
+        #intro-screen::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255, 0, 85, 0.4) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            animation: pulse 3s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(1.3); opacity: 0.9; }
+        }
+
+        .intro-title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            z-index: 2;
+            text-transform: uppercase;
+        }
+
+        .intro-title span {
+            color: var(--accent-red);
+            text-shadow: 0 0 20px var(--accent-red);
+        }
+
+        .intro-subtitle {
+            color: var(--accent-cyan);
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+            z-index: 2;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px var(--accent-cyan);
+        }
+
+        .btn-enter {
+            padding: 16px 45px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(45deg, var(--accent-red), #990033);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 2;
+            letter-spacing: 2px;
+            box-shadow: 0 0 25px rgba(255, 0, 85, 0.6);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .btn-enter:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 40px rgba(255, 0, 85, 0.9);
+        }
+
+        /* Class added via JS to hide Intro Screen */
+        .fade-out {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* ----------------------------------- */
+        /* MAIN SITE STYLES                    */
+        /* ----------------------------------- */
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(18, 19, 28, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 0, 85, 0.2);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            color: var(--text-main);
+        }
+
+        .logo span {
+            color: var(--accent-red);
+            text-shadow: 0 0 10px var(--accent-red);
+        }
+
+        .cta-nav {
+            background: linear-gradient(45deg, var(--accent-red), #990033);
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(255, 0, 85, 0.4);
+            transition: 0.3s;
+        }
+
+        .cta-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(255, 0, 85, 0.8);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px;
+            background: radial-gradient(circle, rgba(255,0,85,0.15) 0%, rgba(10,10,15,1) 70%);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .hero h1 span {
+            color: var(--accent-cyan);
+            text-shadow: 0 0 12px var(--accent-cyan);
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        /* Products Grid */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-align: center;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 240, 255, 0.1);
+        }
+
+        .card.popular {
+            border-color: var(--accent-red);
+            box-shadow: 0 0 20px rgba(255, 0, 85, 0.2);
+        }
+
+        .badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-red);
+            padding: 4px 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--accent-cyan);
+            margin-bottom: 20px;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: var(--text-muted);
+        }
+
+        .features {
+            list-style: none;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .features li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+        }
+
+        .features li::before {
+            content: "✓ ";
+            color: var(--accent-cyan);
+            font-weight: bold;
+        }
+
+        .btn-buy {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: transparent;
+            border: 2px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .btn-buy:hover {
+            background: var(--accent-cyan);
+            color: #000;
+            box-shadow: 0 0 15px var(--accent-cyan);
+        }
+
+        .card.popular .btn-buy {
+            background: var(--accent-red);
+            border-color: var(--accent-red);
+            color: white;
+        }
+
+        .card.popular .btn-buy:hover {
+            box-shadow: 0 0 15px var(--accent-red);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: #060609;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Intro Splash Screen Overlay -->
+    <div id="intro-screen">
+        <h1 class="intro-title">X1 <span>RM SENSI</span></h1>
+        <p class="intro-subtitle">Official VIP Headshot Store</p>
+        <button class="btn-enter" onclick="enterStore()">Enter Store</button>
+    </div>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="logo">X1 <span>RM SENSI</span></div>
+        <a href="https://wa.me/919835287402" class="cta-nav" target="_blank">Contact Seller</a>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="hero">
+        <h1>Dominate Every <span>X1 Match</span></h1>
+        <p>Get elite VIP Sensitivity settings, custom DPI files, and anti-recoil configurations designed for maximum headshots.</p>
+    </section>
+
+    <!-- Pricing/Products Section -->
+    <div class="container">
+        <h2 class="section-title">Select Your Package</h2>
+        
+        <div class="grid">
+            <!-- Basic Pack -->
+            <div class="card">
+                <h3>Starter Sensi</h3>
+                <div class="price">RM 10 <span>/ one-time</span></div>
+                <ul class="features">
+                    <li>Basic Headshot Sensitivity</li>
+                    <li>Device Specific DPI</li>
+                    <li>General Aim Settings</li>
+                    <li>24/7 Support</li>
+                </ul>
+                <a href="https://wa.me/919835287402?text=I%20want%20to%20buy%20Starter%20Sensi" class="btn-buy" target="_blank">Buy Now</a>
+            </div>
+
+            <!-- VIP Pack (Highlighted) -->
+            <div class="card popular">
+                <div class="badge">Most Popular</div>
+                <h3>X1 VIP Pack</h3>
+                <div class="price">RM 25 <span>/ one-time</span></div>
+                <ul class="features">
+                    <li>Ultra Red-Number Sensi</li>
+                    <li>Custom DPI & Touch Speed</li>
+                    <li>Zero Recoil Configuration</li>
+                    <li>X1 Custom HUD Layout</li>
+                    <li>VIP Priority Support</li>
+                </ul>
+                <a href="https://wa.me/919835287402?text=I%20want%20to%20buy%20X1%20VIP%20Pack" class="btn-buy" target="_blank">Buy Now</a>
+            </div>
+
+            <!-- Ultra/Regedit Pack -->
+            <div class="card">
+                <h3>God Mode Sensi</h3>
+                <div class="price">RM 50 <span>/ one-time</span></div>
+                <ul class="features">
+                    <li>Includes Everything in VIP</li>
+                    <li>Private Regedit File</li>
+                    <li>Device Optimization Tweak</li>
+                    <li>1-on-1 Setup Assistance</li>
+                    <li>Free Lifetime Updates</li>
+                </ul>
+                <a href="https://wa.me/919835287402?text=I%20want%20to%20buy%20God%20Mode%20Sensi" class="btn-buy" target="_blank">Buy Now</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Gaming X1 RM Sensi Seller. All rights reserved.</p>
+        <p style="font-size: 0.8rem; margin-top: 10px;">Disclaimer: This site sells custom sensitivity configurations and gaming optimization settings.</p>
+    </footer>
+
+    <!-- JavaScript to Handle Intro Screen Transition -->
+    <script>
+        function enterStore() {
+            const intro = document.getElementById('intro-screen');
+            intro.classList.add('fade-out');
+        }
+    </script>
+
+</body>
+</html>
