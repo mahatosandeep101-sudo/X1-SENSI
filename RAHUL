@@ -1,0 +1,54 @@
+SENSI-SELLER/
+│
+├── index.html
+├── login.html
+├── signup.html
+├── dashboard.html
+├── products.html
+├── product.html
+├── cart.html
+├── checkout.html
+├── payment.html
+├── success.html
+├── profile.html
+├── orders.html
+│
+├── admin/
+│   ├── login.html
+│   ├── dashboard.html
+│   ├── products.html
+│   ├── orders.html
+│   ├── users.html
+│   └── settings.html
+│
+├── css/
+│   ├── style.css
+│   ├── auth.css
+│   ├── dashboard.css
+│   ├── products.css
+│   ├── payment.css
+│   └── admin.css
+│
+├── js/
+│   ├── app.js
+│   ├── firebase-config.js
+│   ├── auth.js
+│   ├── products.js
+│   ├── cart.js
+│   ├── checkout.js
+│   ├── payment.js
+│   ├── orders.js
+│   ├── profile.js
+│   └── admin.js
+│
+├── assets/
+│   ├── logo.png
+│   ├── banner.png
+│   ├── icons/
+│   └── products/
+│
+├── database/
+│   └── firestore-rules.txt
+│
+├── README.md
+└── LICENSE
